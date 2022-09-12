@@ -29,3 +29,11 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
+const game = numGames => {
+    for (let i = 1; i <= numGames; i++){
+        const playerSelection = prompt(`Enter your play:`)
+        console.log(playRound(playerSelection, getComputerChoice()))
+    }
+}
+
+game(3)
