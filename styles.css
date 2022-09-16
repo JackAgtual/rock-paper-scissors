@@ -2,6 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     background-color: black;
     color: aliceblue;
 }
@@ -51,4 +52,17 @@ body {
 
 .selection.you:hover {
     background-color: aliceblue;
+}
+
+.score {
+    margin-bottom: 0;
+}
+.scores {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.tally > * {
+    font-size: 20px;
+    margin: 10px 0;
 }
