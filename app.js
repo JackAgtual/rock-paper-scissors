@@ -36,4 +36,10 @@ const game = numGames => {
     }
 }
 
-// game(3)
+// add event listener to player's buttons
+const playerButtons = document.querySelectorAll('.selection.you');
+playerButtons.forEach(btn => {
+    btn.addEventListener('click', 
+        () => console.log(btn.innerText)
+    )
+})
