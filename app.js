@@ -65,15 +65,25 @@ const game = playerMove => {
         btn.style['background-color'] = 'rgb(140, 141, 141)';
     });
     
+    
+    // tally score
+    let computerColor;
+    if (result === 1) {
+        addScore(yourScore);
+        computerColor = 'rgb(12, 218, 63)';
+    }
+    else if (result === -1) {
+        addScore(comptuerScore);
+        computerColor = 'red';
+    }
+    else computerColor = 'aliceblue';
+
     // style computer's move
+    // change clor based on result 
     const computerBtn = document.querySelector(
         `.selection.computer.${computerMove.toLowerCase()}`
     );
-    computerBtn.style['background-color'] = 'red';
-
-    // tally score
-    if (result === 1) addScore(yourScore);
-    else if (result === -1) addScore(comptuerScore);
+    computerBtn.style['background-color'] = computerColor;
 }
 
 // add event listener to player's buttons
