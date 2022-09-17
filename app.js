@@ -60,9 +60,8 @@ const game = (playerMove, dom) => {
     const result = playRound(playerMove, computerMove);
 
     // style computer's buttons
-    console.log(`#computer-${computerMove.toLowerCase()}`);
     const computerBtn = dom.querySelector(
-        `#computer-${computerMove.toLowerCase()}`
+        `.selection.computer.${computerMove.toLowerCase()}`
     );
     computerBtn.style['background-color'] = 'red';
 
