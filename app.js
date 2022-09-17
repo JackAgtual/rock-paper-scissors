@@ -55,8 +55,18 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
-const game = playerMove => {
-    const result = playRound(playerMove, getComputerChoice());
+const game = (playerMove, dom) => {
+    const computerMove = getComputerChoice();
+    const result = playRound(playerMove, computerMove);
+
+    // style computer's buttons
+    console.log(`#computer-${computerMove.toLowerCase()}`);
+    const computerBtn = dom.querySelector(
+        `#computer-${computerMove.toLowerCase()}`
+    );
+    computerBtn.style['background-color'] = 'red';
+
+    // tally score
     if (result === 1) addScore(yourScore);
     else if (result === -1) addScore(comptuerScore);
 }
@@ -65,5 +75,5 @@ const game = playerMove => {
 const playerButtons = document.querySelectorAll('.selection.you');
 playerButtons.forEach(btn => {
     const playerMove = btn.innerText;
-    btn.addEventListener('click', () => game(playerMove));
+    btn.addEventListener('click', () => game(playerMove, document));
 })
