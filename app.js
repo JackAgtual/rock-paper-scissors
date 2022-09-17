@@ -55,12 +55,18 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
-const game = (playerMove, dom) => {
+const game = playerMove => {
     const computerMove = getComputerChoice();
     const result = playRound(playerMove, computerMove);
 
-    // style computer's buttons
-    const computerBtn = dom.querySelector(
+    // reset all computer's buttons
+    const computerBtns = document.querySelectorAll('.selection.computer');
+    computerBtns.forEach(btn => {
+        btn.style['background-color'] = 'rgb(140, 141, 141)';
+    });
+    
+    // style computer's move
+    const computerBtn = document.querySelector(
         `.selection.computer.${computerMove.toLowerCase()}`
     );
     computerBtn.style['background-color'] = 'red';
@@ -74,5 +80,5 @@ const game = (playerMove, dom) => {
 const playerButtons = document.querySelectorAll('.selection.you');
 playerButtons.forEach(btn => {
     const playerMove = btn.innerText;
-    btn.addEventListener('click', () => game(playerMove, document));
+    btn.addEventListener('click', () => game(playerMove));
 })
