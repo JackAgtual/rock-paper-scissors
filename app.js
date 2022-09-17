@@ -1,3 +1,15 @@
+// score objects
+const yourScore     = document.querySelector('.score-cnt.you');
+const comptuerScore = document.querySelector('.score-cnt.computer');
+
+const addScore = obj => {
+    const delim = ':'
+    const baseTxt = obj.innerText.split(delim)[0] + delim;
+    const score = Number(obj.innerText.split(delim)[1].trim());
+    
+    obj.innerText = `${baseTxt} ${score + 1}`;
+}
+
 const getComputerChoice = () => {
     const choices = ['Rock', 'Paper', 'Scissors']
     return choices[Math.floor(Math.random() * choices.length)]    
@@ -25,40 +37,33 @@ const playRound = (playerSelection, computerSelection) => {
             return 'err';
     }
 
-    const winStr = `You win!`;
-    const loseStr = `You lose`;
-    const tieStr = `Cat's game`;
-
     if (playerSelection === rock){
-        if      (computerSelection === rock)   return tieStr
-        else if (computerSelection === paper) return loseStr
-        else                                   return winStr
+        if      (computerSelection === rock)  return 0
+        else if (computerSelection === paper) return -1
+        else                                   return 1
 
     } else if (playerSelection === paper){
-        if      (computerSelection === rock)   return winStr
-        else if (computerSelection === paper) return tieStr
-        else                                   return loseStr
+        if      (computerSelection === rock)  return 1
+        else if (computerSelection === paper) return 0
+        else                                   return -1
 
     } else {
         // player selects scissors
-        if      (computerSelection === rock)  return loseStr
-        else if (computerSelection === paper) return winStr
-        else                                  return tieStr
+        if      (computerSelection === rock)  return -1
+        else if (computerSelection === paper) return 1
+        else                                  return 0
     }
 }
 
-const game = numGames => {
-    for (let i = 1; i <= numGames; i++){
-        const playerSelection = prompt(`Enter your play:`)
-        console.log(playRound(playerSelection, getComputerChoice()))
-    }
+const game = playerMove => {
+    const result = playRound(playerMove, getComputerChoice());
+    if (result === 1) addScore(yourScore);
+    else if (result === -1) addScore(comptuerScore);
 }
 
 // add event listener to player's buttons
 const playerButtons = document.querySelectorAll('.selection.you');
 playerButtons.forEach(btn => {
     const playerMove = btn.innerText;
-    btn.addEventListener('click', () => {
-        console.log(playRound(playerMove, 'paper'))
-    });
+    btn.addEventListener('click', () => game(playerMove));
 })
