@@ -12,14 +12,14 @@ const playRound = (playerSelection, computerSelection) => {
     const scissors = 'scissors';
     
     // check inputs
-    if (computerSelection !== rock || 
-        computerSelection !== paper ||
+    if (computerSelection !== rock && 
+        computerSelection !== paper &&
         computerSelection !== scissors) {
             console.error(`Invalid computer selection`);
             return 'err';
     }
-    if (playerSelection !== rock || 
-        playerSelection !== paper ||
+    if (playerSelection !== rock && 
+        playerSelection !== paper &&
         playerSelection !== scissors) {
             console.error(`Invalid player selection`);
             return 'err';
